@@ -1,0 +1,1 @@
+The application creates a reproducible 1,200-row synthetic training dataset in code with a fixed random seed. `demo_leads.csv` is illustrative only. It is not historical customer data and must not be represented as production evidence.

@@ -1,0 +1,5 @@
+CREATE TABLE sales_representatives(id INTEGER PRIMARY KEY, name VARCHAR(120) NOT NULL, email VARCHAR(255) UNIQUE NOT NULL, role VARCHAR(80));
+CREATE TABLE leads(id INTEGER PRIMARY KEY, name VARCHAR(120) NOT NULL, company VARCHAR(160) NOT NULL, email VARCHAR(255), phone VARCHAR(40), industry VARCHAR(100), interested_service VARCHAR(160), lead_source VARCHAR(80), budget REAL, lead_status VARCHAR(30), assigned_to INTEGER REFERENCES sales_representatives(id), created_at DATETIME);
+CREATE TABLE interactions(id INTEGER PRIMARY KEY, lead_id INTEGER NOT NULL REFERENCES leads(id) ON DELETE CASCADE, interaction_type VARCHAR(30), interaction_notes TEXT, interaction_date DATETIME);
+CREATE TABLE lead_predictions(id INTEGER PRIMARY KEY, lead_id INTEGER NOT NULL REFERENCES leads(id) ON DELETE CASCADE, lead_score INTEGER, conversion_probability REAL, lead_category VARCHAR(10), explanation TEXT, predicted_at DATETIME);
+CREATE TABLE follow_ups(id INTEGER PRIMARY KEY, lead_id INTEGER NOT NULL REFERENCES leads(id) ON DELETE CASCADE, assigned_employee INTEGER REFERENCES sales_representatives(id), followup_date DATETIME, recommended_action TEXT, followup_status VARCHAR(20));
